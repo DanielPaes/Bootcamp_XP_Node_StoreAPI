@@ -8,7 +8,7 @@ async function createProduct(req, res, next) {
       !product.description ||
       !product.value ||
       !product.stock ||
-      !product.supplier_id
+      !product.supplierId
     ) {
       throw new Error(
         "Name, description, value, stock e supplier_id são obrigatórios."
@@ -54,7 +54,7 @@ async function updateProduct(req, res, next) {
   try {
     let product = req.body;
     if (
-      !product.product_id ||
+      !product.productId ||
       !product.name ||
       !product.description ||
       !product.value ||

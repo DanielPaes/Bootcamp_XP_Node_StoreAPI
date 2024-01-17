@@ -1,16 +1,10 @@
-import pg from "pg";
+import Sequelize from "sequelize";
 
-async function connect() {
-  if (global.connection) {
-    return global.connection.connect();
-  }
+const sequelize = new Sequelize("endereço do BD", {
+  dialect: "postgres",
+  define: {
+    timestamps: false,
+  },
+});
 
-  const pool = new pg.Pool({
-    connectionString: "Endereço de conexão",
-  });
-  global.connection = pool;
-
-  return pool.connect();
-}
-
-export { connect };
+export default sequelize;
