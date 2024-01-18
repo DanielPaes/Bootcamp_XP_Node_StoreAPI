@@ -72,10 +72,41 @@ async function updateProduct(req, res, next) {
     next(err);
   }
 }
+
+async function createProductInfo(req, res, next) {
+  try {
+    let productInfo = req.body;
+    if (!productInfo.productId) {
+      throw new Error("Product ID é obrigatório;");
+    }
+    productInfo = await ProductService.createProductInfo(productInfo);
+    res.send(productInfo);
+    logger.info(`POST /product/info - ${JSON.stringify(productInfo)}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function updateProductInfo(req, res, next) {
+  try {
+    let productInfo = req.body;
+    if (!productInfo.productId) {
+      throw new Error("Product ID é obrigatório;");
+    }
+    productInfo = await ProductService.updateProductInfo(productInfo);
+    res.send(productInfo);
+    logger.info(`PUT /product/info - ${JSON.stringify(productInfo)}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   createProduct,
   getProducts,
   getProduct,
   deleteProduct,
   updateProduct,
+  createProductInfo,
+  updateProductInfo,
 };
